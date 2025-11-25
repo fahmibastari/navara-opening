@@ -33,9 +33,18 @@
       <p class="tagline">More Than Just A Destination</p>
     </div>
 
-    <h4>Kepada Yth. <br><span>Bapak/Ibu/Saudara/i,</span></h4>
+    <div class="invitation-box mt-4">
+      <h4>Kepada Yth.</h4>
+      
+      <span id="pronoun-display" class="d-block fw-light fs-4 mt-2">
+        Bapak/Ibu/Saudara/i,
+      </span>
+    
+      <h1 id="nama-display" class="brand-title mt-2" style="font-size: 2.5rem;">
+        </h1>
+    </div>
     <p class="mt-4">Kami mengundang Anda untuk hadir dalam acara <br><strong>Opening Ceremony Navara Ciy Park</strong></p> 
-    <div class="simply-countdown"></div>
+  
     <a href="#about" class="btn btn-primary btn-lg mt-4 shadow" onClick="enableScroll()">Buka Undangan</a>
   </main>
 </section>
@@ -125,11 +134,12 @@
       <div class="row justify-content-center mb-5">
         <div class="col-md-8 text-center">
           <img src="logo1.png" alt="Logo Navara" class="hero-logo">
-          <span class="subheading text-uppercase fw-bold text-white-50">Itinerary</span>
-          <h2 class="text-white display-5 fw-bold">Event Rundown</h2>
-          <p class="text-white-50">Bergabunglah bersama kami pada momen spesial peluncuran ini.</p>
+          <span class="subheading text-uppercase fw-bold text-white-50">Rundown</span>
+          <h2 class="text-white display-5 fw-bold">Agenda Acara</h2>
+          <p class="text-white-50">Bergabunglah bersama kami pada momen spesial ini.</p>
         </div>
       </div>
+      <div class="simply-countdown"></div>
 
       <div class="row justify-content-center mb-5">
         <div class="col-md-8">
@@ -147,7 +157,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
           <div class="timeline-box bg-white shadow rounded-4 p-4 p-md-5">
-            <h4 class="text-center text-primary mb-4 fw-bold">Grand Opening Ceremony</h4>
+            <h4 class="text-center text-primary mb-4 fw-bold">Agenda Opening Ceremony</h4>
             
             <div class="timeline">
               <div class="timeline-item">
@@ -580,21 +590,25 @@
     });
   </script>
 
-  <script>
-    // URL PARAMETER SCRIPT
-    // Fitur: ?to=Nama Tamu&p=Bapak
-    const urlParams = new URLSearchParams(window.location.search);
-    const nama = urlParams.get('to') || urlParams.get('n') || ''; // Support 'to' atau 'n'
-    const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
-    
-    const namaContainer = document.querySelector('.hero h4 span');
-    
-    if(nama) {
-        namaContainer.innerText = `${pronoun} ${nama},`.replace(/ ,$/, ',');
-        document.querySelector('#nama').value = nama; // Auto-fill form input
-    } else {
-        namaContainer.innerText = "Bapak/Ibu/Saudara/i,";
-    }
-  </script>
+<script>
+  // URL PARAMETER SCRIPT
+  const urlParams = new URLSearchParams(window.location.search);
+  const nama = urlParams.get('to') || urlParams.get('n') || ''; 
+  const pronoun = urlParams.get('p') || 'Bapak/Ibu/Saudara/i';
+  
+  // Mengambil elemen berdasarkan ID baru
+  const pronounContainer = document.getElementById('pronoun-display');
+  const namaContainer = document.getElementById('nama-display');
+  
+  // Set tulisan Panggilan (Tipis)
+  pronounContainer.innerText = pronoun + ',';
+
+  // Set tulisan Nama (Tebal)
+  if(nama) {
+      namaContainer.innerText = nama;
+  } else {
+      namaContainer.innerText = "Tamu Undangan"; // Default jika tidak ada nama di link
+  }
+</script>
 </body>
 </html>

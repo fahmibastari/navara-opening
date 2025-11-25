@@ -59,21 +59,24 @@ p {
   min-height: 100vh;
   width: 100%;
   max-width: 100vw;
-  overflow: hidden;
+  overflow: hidden; 
   /* Ganti gambar background taman/resort */
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Gate.jpeg); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  
+  /* FIX: Menggunakan Flex untuk centering */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+  justify-content: center; /* Centering horizontal */
+  align-items: center; /* Centering vertikal (Ini sumber masalah jika konten panjang) */
+  
+  /* FIX KRITIS: Tambahkan padding yang besar di atas dan bawah. 
+     Ini memastikan tombol memiliki ruang yang cukup dan tidak terpotong */
+  padding: 50px 1rem; 
 }
 
-.hero > * {
-  max-width: 100%;
-}
+
 
 /* LOGO STYLE */
 .hero-logo {
@@ -86,7 +89,7 @@ p {
 }
 
 .brand-title {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: 800;
     letter-spacing: 2px;
     text-shadow: var(--shadow);
@@ -138,6 +141,22 @@ p {
 .hero .btn-primary:hover {
     background-color: var(--secondary);
 }
+
+/* Pastikan font tipis untuk panggilan */
+#pronoun-display {
+  font-weight: 200 !important; /* Memaksa font menjadi tipis */
+  color: white;
+  letter-spacing: 1px;
+}
+
+/* Pastikan font tebal untuk nama */
+#nama-display {
+  font-weight: 800 !important; /* Memaksa font menjadi sangat tebal */
+  color: white;
+  text-transform: uppercase; /* Agar nama otomatis huruf besar semua */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Bayangan agar terbaca jelas */
+  line-height: 1.2;
+} 
 
 /* NAVBAR */
 .mynavbar {
@@ -436,6 +455,7 @@ footer .social-icons a:hover {
   max-width: 100%;
   overflow: visible;
   padding: 0 10px;
+  color: white !important;
 }
 
 /* 2. Style Default (Desktop/Tablet) */
