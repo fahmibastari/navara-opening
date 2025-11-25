@@ -11,12 +11,36 @@
   --font-secondary: 'Hind Madurai', sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-size: 1rem;
   font-family: var(--font-primary);
   color: #333;
   background-color: var(--bg);
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Prevent horizontal scroll on all containers */
+.container, .container-fluid {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+section {
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* Typography Overrides */
@@ -33,11 +57,32 @@ p {
 .hero {
   position: relative;
   min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
   /* Ganti gambar background taman/resort */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/id/15/1920/1080'); 
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Gate.jpeg); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.hero > * {
+  max-width: 100%;
+}
+
+/* LOGO STYLE */
+.hero-logo {
+  /* Ukuran default untuk Laptop/PC */
+  width: 160px; 
+  height: auto; /* Jarak antara logo dan tulisan Navara */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .brand-title {
@@ -45,8 +90,11 @@ p {
     font-weight: 800;
     letter-spacing: 2px;
     text-shadow: var(--shadow);
-    color: var(--accent);
+    color: var(--bg);
     margin-bottom: 0;
+    word-wrap: break-word;
+    max-width: 100%;
+    text-align: center;
 }
 
 .tagline {
@@ -55,17 +103,27 @@ p {
     letter-spacing: 3px;
     text-transform: uppercase;
     color: white;
+    text-align: center;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .hero h4 {
   font-size: 1.5rem;
   text-shadow: var(--shadow);
   margin-top: 2rem;
+  text-align: center;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .hero p {
   font-size: 1.2rem;
   text-shadow: var(--shadow);
+  text-align: center;
+  max-width: 100%;
+  word-wrap: break-word;
+  padding: 0 1rem;
 }
 
 .hero .btn-primary {
@@ -162,32 +220,149 @@ section {
     font-weight: 600;
     color: var(--secondary);
 }
+/* --- UTILITIES --- */
+.ls-1 { letter-spacing: 1px; }
+.section-padding { padding-top: 5rem; padding-bottom: 5rem; }
 
-/* RUNDOWN */
+/* --- RUNDOWN MODERN STYLES --- */
 .rundown {
-    background-color: var(--primary);
-    background-image: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    color: white;
-}
-.rundown h2 {
-    color: white;
-    font-size: 2.5rem;
-}
-.rundown .card {
-    border: none;
-    border-radius: 15px;
-    overflow: hidden;
-}
-.rundown .card-header {
-    background-color: var(--dark);
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 1rem;
-}
-.rundown .text-secondary {
-    color: var(--primary) !important;
+  /* Background Gradient agar lebih fresh */
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Hiasan background abstrak (Opsional) */
+.rundown::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 300px; height: 300px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  filter: blur(50px);
+}
+
+.date-badge {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 500;
+}
+
+/* Vertical Timeline CSS */
+.timeline {
+  position: relative;
+  padding-left: 20px;
+  margin-top: 2rem;
+}
+/* Garis vertikal */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px; /* Posisi garis */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e9ecef;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 40px;
+  padding-bottom: 2.5rem;
+}
+
+/* Titik (Dot) Timeline */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 4px solid var(--primary); /* Warna ungu Navara */
+  z-index: 1;
+}
+
+/* Menghilangkan garis pada item terakhir */
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-time {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-content h5 {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  color: #333;
+}
+
+/* --- RSVP MODERN STYLES --- */
+.rsvp {
+  background-color: #111; /* Dark background */
+  background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1920&auto=format&fit=crop'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Parallax effect */
+  position: relative;
+  z-index: 1;
+}
+
+/* Overlay gelap agar teks terbaca */
+.rsvp::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: -1;
+}
+
+/* Efek Kaca (Glassmorphism) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Custom Input Fields */
+.custom-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white !important;
+  border-radius: 10px;
+}
+
+.custom-input:focus {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: var(--accent); /* Warna biru muda Navara */
+  box-shadow: none;
+  color: white;
+}
+
+/* Placeholder color fix */
+.custom-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Select option color fix (browser default dropdowns are usually white) */
+.custom-input option {
+  background: #333;
+  color: white;
+}
 /* LOCATION */
 .location {
     background-color: #fff;
@@ -251,23 +426,140 @@ footer .social-icons li {
 footer .social-icons a:hover {
     color: var(--accent);
 }
+/* 1. Pastikan Container Menggunakan Flexbox */
+.simply-countdown {
+  display: flex !important;
+  justify-content: center;
+  flex-wrap: nowrap !important;
+  gap: 8px; 
+  margin-bottom: 2rem;
+  max-width: 100%;
+  overflow: visible;
+  padding: 0 10px;
+}
 
-/* Simply Countdown Customization for Corporate */
+/* 2. Style Default (Desktop/Tablet) */
 .simply-countdown > .simply-section {
-    width: 70px;
-    height: 70px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 10px;
-    margin: 5px;
+  width: 80px !important;
+  height: 80px !important;
+  min-width: 80px !important;
+  max-width: 80px !important;
+  background: rgba(255,255,255,0.1) !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  border-radius: 10px !important;
+  
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  
+  transition: all 0.3s ease !important;
 }
+
 .simply-countdown > .simply-section .simply-amount {
-    font-size: 1.5rem;
-    font-weight: 700;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important; 
+  display: block !important;
 }
+
 .simply-countdown > .simply-section .simply-word {
-    font-size: 0.7rem;
-    text-transform: uppercase;
+  font-size: 0.7rem !important;
+  text-transform: uppercase !important;
+  margin-top: 4px !important;
+  display: block !important;
+}
+
+/* 3. Media Query untuk Tablet */
+@media (max-width: 768px) {
+  .simply-countdown {
+      gap: 6px !important;
+  }
+  
+  .simply-countdown > .simply-section {
+      width: 65px !important;
+      min-width: 65px !important;
+      max-width: 65px !important;
+      height: 65px !important;
+  }
+
+  .simply-countdown > .simply-section .simply-amount {
+      font-size: 1.3rem !important; 
+  }
+
+  .simply-countdown > .simply-section .simply-word {
+      font-size: 0.6rem !important; 
+  }
+}
+
+/* 4. Media Query untuk Mobile (HP) */
+@media (max-width: 576px) {
+  .simply-countdown {
+      gap: 2px !important;
+      padding: 0 5px !important;
+  }
+  
+  .simply-countdown > .simply-section {
+    padding: 45px;
+    margin: 1px;
+  }
+
+  .simply-countdown > .simply-section .simply-amount {
+      font-size: 0.95rem !important; 
+      font-weight: 700 !important;
+  }
+
+  .simply-countdown > .simply-section .simply-word {
+      font-size: 0.42rem !important;
+      margin-top: 2px !important;
+  }
+}
+
+/* 5. Untuk HP Layar Sangat Kecil (misal Galaxy Fold) */
+@media (max-width: 380px) {
+  .simply-countdown {
+      gap: 3px !important;
+      padding: 0 3px !important;
+  }
+  
+  .simply-countdown > .simply-section {
+      width: 42px !important;
+      min-width: 42px !important;
+      max-width: 42px !important;
+      height: 42px !important;
+      border-radius: 5px !important;
+  }
+  
+  .simply-countdown > .simply-section .simply-amount {
+      font-size: 0.85rem !important;
+  }
+  
+  .simply-countdown > .simply-section .simply-word {
+      font-size: 0.38rem !important;
+  }
+}
+
+/* 6. Untuk layar SANGAT kecil */
+@media (max-width: 330px) {
+  .simply-countdown {
+      gap: 2px !important;
+  }
+  
+  .simply-countdown > .simply-section {
+      width: 38px !important;
+      min-width: 38px !important;
+      max-width: 38px !important;
+      height: 38px !important;
+  }
+  
+  .simply-countdown > .simply-section .simply-amount {
+      font-size: 0.75rem !important;
+  }
+  
+  .simply-countdown > .simply-section .simply-word {
+      font-size: 0.35rem !important;
+  }
 }
 
 /* AUDIO ICON */
@@ -296,9 +588,388 @@ footer .social-icons a:hover {
   to { transform: rotate(360deg); }
 }
 
-/* RESPONSIVE */
+/* ===================================
+   RESPONSIVE MEDIA QUERIES
+   =================================== */
+
+/* Tablet & Mobile Landscape (992px ke bawah) */
+@media (max-width: 992px) {
+    /* Hero */
+    .brand-title { 
+        font-size: 3rem; 
+        letter-spacing: 1px;
+    }
+    .tagline { 
+        font-size: 1rem; 
+        letter-spacing: 2px;
+    }
+    .hero h4 { font-size: 1.3rem; }
+    .hero p { font-size: 1.1rem; }
+    
+    /* Sections */
+    section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    
+    /* About & Facilities */
+    .about h2, .facilities h2, .location h2 { font-size: 2.2rem; }
+    .about .description { font-size: 1rem; }
+    
+    /* RSVP */
+    .rsvp h2 { font-size: 2.5rem; }
+    
+    /* Footer */
+    footer { padding: 3rem 0; }
+}
+
+/* Tablet Portrait & Mobile (768px ke bawah) */
 @media (max-width: 768px) {
-    .brand-title { font-size: 2.5rem; }
-    .hero h4 { font-size: 1.2rem; }
-    .rundown h2, .about h2, .facilities h2 { font-size: 2rem; }
+    /* Body font size */
+    body { font-size: 0.95rem; }
+    
+    /* Hero */
+    .hero {
+        background-attachment: scroll;
+        padding: 2rem 1rem;
+    }
+    .brand-title { 
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+        padding: 0 1rem;
+    }
+    .tagline { 
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+        padding: 0 1rem;
+    }
+    .hero h4 { 
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+        padding: 0 1rem;
+    }
+    .hero p { 
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    .hero .btn-primary {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+    
+    /* Navbar */
+    .mynavbar .navbar-brand { font-size: 1.3rem; }
+    .mynavbar .nav-link {
+        font-size: 0.8rem;
+        margin: 5px 0;
+        padding: 0.5rem 1rem;
+    }
+    
+    /* Sections */
+    section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    
+    /* Section titles */
+    .about h2, .facilities h2, .location h2 { 
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    .about .description { 
+        font-size: 0.95rem;
+        line-height: 1.7;
+        padding: 0 1rem;
+    }
+    
+    /* Facility Cards */
+    .facility-card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .facility-card h5 { font-size: 1rem; }
+    
+    /* Rundown */
+    .rundown::before {
+        width: 200px;
+        height: 200px;
+        top: -30px;
+        right: -30px;
+    }
+    .date-badge {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Timeline */
+    .timeline {
+        padding-left: 15px;
+        margin-top: 1.5rem;
+    }
+    .timeline::before {
+        left: 7px;
+    }
+    .timeline-item {
+        padding-left: 30px;
+        padding-bottom: 2rem;
+    }
+    .timeline-item::before {
+        width: 16px;
+        height: 16px;
+        border-width: 3px;
+    }
+    .timeline-time { font-size: 0.85rem; }
+    .timeline-content h5 { font-size: 1rem; }
+    
+    /* RSVP */
+    .rsvp {
+        background-attachment: scroll;
+    }
+    .rsvp h2 { 
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+    .glass-card {
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+    .rsvp .btn-custom {
+        padding: 8px 30px;
+        font-size: 0.9rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    /* Table responsive */
+    .rsvp .table {
+        font-size: 0.85rem;
+    }
+    .rsvp .table thead th {
+        padding: 0.5rem;
+    }
+    .rsvp .table tbody td {
+        padding: 0.5rem;
+    }
+    
+    /* Footer */
+    footer { 
+        padding: 2.5rem 0;
+        text-align: center;
+    }
+    footer .social-icons li {
+        margin: 0 8px;
+        font-size: 1.3rem;
+    }
+    
+    /* Audio Icon */
+    .audio-icon-wrapper {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 2.5rem;
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+/* Mobile Portrait (576px ke bawah) */
+@media (max-width: 576px) {
+    /* Body */
+    body { font-size: 0.9rem; }
+    
+    /* Hero */
+    .hero-logo {
+      width: 100px; /* Ukuran lebih kecil untuk HP */
+      margin-bottom: 0.5rem;
+  }
+
+  /* ... kode hero lainnya tetap sama ... */
+  .hero {
+      padding: 1.5rem 0.75rem;
+  }
+    .brand-title { 
+        font-size: 1.8rem;
+        letter-spacing: 0.5px;
+        padding: 0 0.5rem;
+        line-height: 1.2;
+    }
+    .tagline { 
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+        padding: 0 0.5rem;
+        margin-top: 0.5rem;
+    }
+    .hero h4 { 
+        font-size: 1rem;
+        margin-top: 1rem;
+        padding: 0 0.5rem;
+    }
+    .hero p { 
+        font-size: 0.85rem;
+        padding: 0 0.5rem;
+    }
+    .hero .btn-primary {
+        padding: 8px 20px;
+        font-size: 0.8rem;
+        margin-top: 1rem;
+    }
+    
+    /* Navbar */
+    .mynavbar .navbar-brand { font-size: 1.2rem; }
+    
+    /* Sections */
+    section {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+    
+    /* Section titles */
+    .about h2, .facilities h2, .location h2 { 
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    .section-title h2 {
+        font-size: 1.75rem;
+    }
+    .about .description { 
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    /* Facility Cards */
+    .facility-card {
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    .facility-card h5 { font-size: 0.95rem; }
+    .facility-card p { font-size: 0.85rem; }
+    
+    /* Rundown */
+    .date-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Timeline */
+    .timeline-time { font-size: 0.8rem; }
+    .timeline-content h5 { font-size: 0.95rem; }
+    .timeline-content p { font-size: 0.85rem; }
+    
+    /* RSVP */
+    .rsvp h2 { 
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    .glass-card {
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+    .rsvp form label {
+        font-size: 0.85rem;
+    }
+    .custom-input {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+    }
+    .rsvp .btn-custom {
+        padding: 8px 25px;
+        font-size: 0.85rem;
+    }
+    
+    /* Table */
+    .rsvp .table {
+        font-size: 0.75rem;
+    }
+    .rsvp .table thead th {
+        padding: 0.4rem;
+    }
+    .rsvp .table tbody td {
+        padding: 0.4rem;
+    }
+    
+    /* Footer */
+    footer { padding: 2rem 0; }
+    footer h5 { font-size: 1rem; }
+    footer p, footer a { font-size: 0.85rem; }
+    footer .social-icons li {
+        margin: 0 5px;
+        font-size: 1.2rem;
+    }
+    
+    /* Audio Icon */
+    .audio-icon-wrapper {
+        width: 2.2rem;
+        height: 2.2rem;
+        font-size: 2.2rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
+}
+
+/* Extra Small Mobile (400px ke bawah) */
+@media (max-width: 400px) {
+    .hero {
+        padding: 1.5rem 0.5rem;
+    }
+    .brand-title { 
+        font-size: 1.6rem;
+        padding: 0 0.5rem;
+    }
+    .tagline { 
+        font-size: 0.6rem;
+        padding: 0 0.5rem;
+    }
+    .hero h4 { 
+        font-size: 0.95rem;
+        padding: 0 0.5rem;
+    }
+    .hero p { 
+        font-size: 0.8rem;
+        padding: 0 0.5rem;
+    }
+    
+    .about h2, .facilities h2, .location h2, .rsvp h2 { 
+        font-size: 1.5rem;
+    }
+    
+    .facility-card {
+        padding: 1rem;
+    }
+    
+    .glass-card {
+        padding: 1rem;
+    }
+    
+    .audio-icon-wrapper {
+        width: 2rem;
+        height: 2rem;
+        font-size: 2rem;
+        bottom: 0.75rem;
+        right: 0.75rem;
+    }
+}
+
+/* Landscape Mobile (max-height: 500px) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 3rem 0;
+    }
+    .brand-title { 
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    .tagline { 
+        font-size: 0.8rem;
+    }
+    .hero h4 { 
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+    .hero p { 
+        font-size: 0.9rem;
+    }
+    section {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
 }
