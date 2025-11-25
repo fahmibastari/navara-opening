@@ -61,7 +61,7 @@ p {
   max-width: 100vw;
   overflow: hidden; 
   /* Ganti gambar background taman/resort */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Gate.jpeg); 
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(BG3.png); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -75,8 +75,6 @@ p {
      Ini memastikan tombol memiliki ruang yang cukup dan tidak terpotong */
   padding: 50px 1rem; 
 }
-
-
 
 /* LOGO STYLE */
 .hero-logo {
@@ -246,7 +244,8 @@ section {
 /* --- RUNDOWN MODERN STYLES --- */
 .rundown {
   /* Background Gradient agar lebih fresh */
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(BG.png);
+  
   position: relative;
   overflow: hidden;
 }
@@ -427,7 +426,7 @@ section {
 /* FOOTER */
 footer {
   padding: 4rem 0;
-  background-color: var(--primary);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(BG.png);
   color: white;
 }
 
